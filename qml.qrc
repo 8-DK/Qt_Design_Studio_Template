@@ -1,0 +1,18 @@
+<RCC>
+    <qresource prefix="/">
+        <file>content/fonts/fonts.txt</file>
+        <file>content/App.qml</file>
+        <file>content/Screen01.ui.qml</file>
+        <file>content/Screen02.ui.qml</file>
+        <file alias="imports/MatSmily/designer/plugin.metainfo">imports/MatSmily/designer/plugin.metainfo</file>
+        <file alias="imports/MatSmily/Constants.qml">imports/MatSmily/Constants.qml</file>
+        <file alias="imports/MatSmily/DirectoryFontLoader.qml">imports/MatSmily/DirectoryFontLoader.qml</file>
+        <file alias="imports/MatSmily/EventListModel.qml">imports/MatSmily/EventListModel.qml</file>
+        <file alias="imports/MatSmily/EventListSimulator.qml">imports/MatSmily/EventListSimulator.qml</file>
+        <file alias="imports/MatSmily/qmldir">imports/MatSmily/qmldir</file>
+        <file alias="imports/qtquickcontrols2.conf">qtquickcontrols2.conf</file>
+        <file>content/assets/images/logo.ico</file>
+        <file>content/assets/images/logo.png</file>
+        <file>content/DashBoard.ui.qml</file>
+    </qresource>
+</RCC>

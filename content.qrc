@@ -1,0 +1,15 @@
+<RCC>
+    <qresource prefix="/">
+        <file>content/fonts/fonts.txt</file>
+        <file>content/App.qml</file>
+        <file>content/Screen01.ui.qml</file>
+        <file>content/Screen02.ui.qml</file>
+        <file>imports/MatSmily/designer/plugin.metainfo</file>
+        <file>imports/MatSmily/CMakeLists.txt</file>
+        <file>imports/MatSmily/Constants.qml</file>
+        <file>imports/MatSmily/DirectoryFontLoader.qml</file>
+        <file>imports/MatSmily/EventListModel.qml</file>
+        <file>imports/MatSmily/EventListSimulator.qml</file>
+        <file>imports/MatSmily/qmldir</file>
+    </qresource>
+</RCC>
