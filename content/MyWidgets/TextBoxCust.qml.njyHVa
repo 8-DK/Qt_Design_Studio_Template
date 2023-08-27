@@ -1,0 +1,26 @@
+import QtQuick 6.5
+import QtQuick.Controls 6.5
+import QtQuick.Window 2.2
+import MatSmily
+
+TextField {
+    id: control
+    width: Constants.get['textBoxW']
+    height: Constants.get['textBoxH']
+
+    anchors.verticalCenter: parent.verticalCenter
+    property string placeholder: "Enter text here..."
+
+    Text {
+        id: placeholderText
+        anchors.fill: parent
+        text: control.placeholderText
+        visible: !control.text && !control.activeFocus
+    }
+
+    background: Rectangle {
+        color: control.enabled ? "transparent" : "#353637"
+        border.color: control.enabled ? "#21be2b" : "transparent"
+        border.width: 2
+    }
+}
