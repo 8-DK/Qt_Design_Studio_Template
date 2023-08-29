@@ -7,10 +7,10 @@ Rectangle {
     id : root
     width: Constants.get['textBoxW']
     height: Constants.get['textBoxH']
-    color: control.enabled ? "transparent" : "#353637"
-    border.color: control.enabled ? Constants.get['thmBoarderColor'] : "transparent"
+    color: Constants.get['wdgtBaseColor']
     border.width: Constants.get['thmDefBoxBorderWidth']
     radius: Constants.get['thmDefBoxRadius']
+    border.color: Constants.get['wdgetColor']
     clip: true
 
     property string placeholder: ""

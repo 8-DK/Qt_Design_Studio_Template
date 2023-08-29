@@ -1,0 +1,102 @@
+import QtQuick 6.5
+import QtQuick
+import QtQuick.Controls 6.5
+import MatSmily
+import "MyWidgets"
+
+Rectangle {
+    id: rectangle
+    width: Constants.width
+    height: Constants.height
+    objectName: "DashBoard"
+    color: Constants.get['thmBgPrimaryColor']
+
+    Column {
+        id: column
+        anchors.fill: parent
+        Row {
+            id: row1
+            height: parent.height * 0.2
+            anchors.left: parent.left
+            anchors.right: parent.right
+            spacing: width * 0.05
+            padding: spacing
+            TextBoxCust {
+                id: matW
+                anchors.verticalCenter: parent.verticalCenter
+                placeholder: "8"
+            }
+
+            Text {
+                id: text1
+                text: qsTr("X")
+                anchors.verticalCenter: parent.verticalCenter
+                font.pixelSize: 12
+            }
+
+            TextBoxCust {
+                id: matX
+                anchors.verticalCenter: parent.verticalCenter
+                placeholder: "8"
+            }
+
+            ButtonCust {
+                anchors.verticalCenter: parent.verticalCenter
+            }
+        }
+        Row {
+            id: colorTools
+            anchors.top: row1.bottom
+            anchors.left: parent.left
+            anchors.right: parent.right
+            property color paintColor: "#33B5E5"
+            spacing: 4
+            Repeater {
+                anchors.fill: parent
+                model: ["#33B5E5", "#99CC00", "#FFBB33", "#FF4444"]
+                Rectangle {
+                    width: parent.width/model.length
+                    color: modelData
+                    MouseArea{
+                        anchors.fill: parent
+                        onClicked: {
+                            parent.paintColor = color
+                        }
+                    }
+                }
+            }
+        }
+        Canvas {
+            id: canvas
+            width: parent.width
+            anchors.top: colorTools.bottom
+            anchors.bottom: parent.bottom
+            property real lastX
+            property real lastY
+            property color color: colorTools.paintColor
+
+            onPaint: {
+                var ctx = getContext('2d')
+                ctx.lineWidth = 1.5
+                ctx.strokeStyle = canvas.color
+                ctx.beginPath()
+                ctx.moveTo(lastX, lastY)
+                lastX = area.mouseX
+                lastY = area.mouseY
+                ctx.lineTo(lastX, lastY)
+                ctx.stroke()
+            }
+            MouseArea {
+                id: area
+                anchors.fill: parent
+                onPressed: {
+                    canvas.lastX = mouseX
+                    canvas.lastY = mouseY
+                }
+                onPositionChanged: {
+                    canvas.requestPaint()
+                }
+            }
+        }
+    }
+}
