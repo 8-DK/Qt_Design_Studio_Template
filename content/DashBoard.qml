@@ -83,60 +83,56 @@ Rectangle {
             anchors.bottom: parent.bottom
             property real lastX
             property real lastY
-            property color color: colorTools.paintColor
-            property int wgrid: 20
+            property color drawColor: colorTools.paintColor
+            property int wgrid: 4
+            property int col: 8
+            property int row: 10
 
             onPaint: {
                 var ctx = getContext('2d')
-                ctx.lineWidth = wgrid//1.5
-                ctx.strokeStyle = canvas.color
-                ctx.beginPath()
-                ctx.moveTo(lastX, lastY)
-                lastX = area.mouseX
-                lastY = area.mouseY
-                ctx.lineTo(lastX, lastY)
-                ctx.stroke()
 
+                if( lastX > -1 && lastY > -1 )
+                {
+
+                    lastX = area.mouseX
+                    lastY = area.mouseY
+
+                    //stroke box only
+                    lastX = Math.ceil(lastX)
+                    lastY = Math.ceil(lastY)
+
+                    var rw = width/col
+                    var rh = height/row
+
+                    var x1 = (lastX - (lastX%(rw)));
+                    var y1 = (lastY - (lastY%(rh)));
+                    ctx.fillStyle = canvas.drawColor
+                    ctx.fillRect(x1,y1,rw,rh);
+                    ctx.stroke()
+                }
                 //draw grid
                 ctx.lineWidth = 1
                 ctx.strokeStyle = "black"
-                ctx.beginPath()
-                var nrows = height/wgrid;
-                for(var i=0; i < nrows+1; i++){
-                    ctx.moveTo(0, wgrid*i);
-                    ctx.lineTo(width, wgrid*i);
+                for (var i = 0; i < col+1; i++) {
+                    // Vertical lines
+                    ctx.beginPath();
+                    ctx.moveTo(i * rw, 0);
+                    ctx.lineTo(i * rw, height);
+                    ctx.stroke();
                 }
-
-                var ncols = width/wgrid
-                for(var j=0; j < ncols+1; j++){
-                    ctx.moveTo(wgrid*j, 0);
-                    ctx.lineTo(wgrid*j, height);
+                for (var i = 0; i < row+1; i++) {
+                    // Horizontal lines
+                    ctx.beginPath();
+                    ctx.moveTo(0, i * rh);
+                    ctx.lineTo(width, i * rh);
+                    ctx.stroke();
                 }
-                ctx.closePath()
                 ctx.stroke()
-
-                ctx.beginPath()
-                ctx.lineWidth = wgrid
-                ctx.strokeStyle = "red"
-                ctx.beginPath()
-                //stroke box only
-                lastX = Math.ceil(lastX)
-                lastY = Math.ceil(lastY)
-                var x1 = (lastX - (lastX%wgrid));
-                var y1 = (lastY - (lastY%wgrid));
-
-                var x2 = x1 + wgrid
-                var y2 = y1 + wgrid
-
-                ctx.fillRect(x1,x2,y1,y2);
-                ctx.stroke()
-
-
-                console.log("X : ",lastX,", Y :",lastX)
-                console.log("Rect : ",x1,",",y1," , ",x2,",",y2)
             }
 
             function clear_canvas() {
+                canvas.lastX = 0
+                canvas.lastY = 0
                 var ctx = getContext("2d");
                 ctx.reset();
                 canvas.requestPaint();
