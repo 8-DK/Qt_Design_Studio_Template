@@ -4,10 +4,11 @@ import QtQuick 6.5
 
 QtObject {
     property bool isMobile: (Qt.platform.os === "android")
-    property int width:  720
-    property int height: 1280
-//    property int width:  Screen.desktopAvailableWidth
-//    property int height: Screen.desktopAvailableHeight
+    property int width:  411
+    property int height: 833
+    property int multFact: 1
+//        property int width:  Screen.desktopAvailableWidth
+//        property int height: Screen.desktopAvailableHeight
 
     property string relativeFontDirectory: "fonts"
 
@@ -21,19 +22,41 @@ QtObject {
                                                   pixelSize: Qt.application.font.pixelSize * 1.6
                                               })
 
-    property variant get : (Qt.platform.os === "android") ? androidDef : deskstopDef
+    property variant get : (Qt.platform.os === "android") ? androidDef : androidDef
 
     property variant androidDef:    {
-                                        'backgroundColor'   : "#c2c2c2",
-                                        'width'             : Screen.desktopAvailableHeight,
-                                        'height'            : Screen.desktopAvailableWidth
-                                    }
-    property variant deskstopDef:   {   'backgroundColor'   : "#0c1154",
-                                        'width'             : Screen.desktopAvailableWidth,
-                                        'height'            : Screen.desktopAvailableHeight
-                                    }
+        'backgroundColor'   : "#ffffff",
+        'width'             : Screen.desktopAvailableHeight,
+        'height'            : Screen.desktopAvailableWidth,
+        'textBoxW'          : width * 0.1,
+        'textBoxH'          : height * 0.05,
+        'thmBoarderColor'   : "#938a93",
+        'thmBgPrimaryColor' : "#ffffff",
+        'thmBgSecondaryColor' : "#786fa6",
+        'thmDefBoxRadius'   : multFact * 5,
+        'thmDefBoxBorderWidth' : multFact * 1,
+        'buttonW'           :  width * 0.4,
+        'buttonH'           :  height * 0.07,
+        'wdgetColor'        : "#45b8de",
+        'wdgtActiveColor'   : "#008CBA",
+        'wdgtBaseColor'     : "#f6f6f6",
+        'wdgtDisableColor'  : "#858585",
+    }
+    property variant deskstopDef:   {   'backgroundColor'   : "#ffffff",
+        'width'             : Screen.desktopAvailableWidth,
+        'height'            : Screen.desktopAvailableHeight,
+        'textBoxW'          : width * 0.1,
+        'textBoxH'          : height * 0.05,
+        'thmBoarderColor'   : "#546de5",
+        'thmBgPrimaryColor' : "#63cdda",
+        'thmBgSecondaryColor' : "#786fa6",
+        'thmDefBoxRadius'   : multFact * 5,
+        'thmDefBoxBorderWidth' : multFact * 1,
+        'buttonW'           :  width * 0.4,
+        'buttonH'           :  height * 0.07
+    }
 
-//    property StudioApplication application: StudioApplication {
-//        fontPath: Qt.resolvedUrl("../../content/" + relativeFontDirectory)
-//    }
+    //    property StudioApplication application: StudioApplication {
+    //        fontPath: Qt.resolvedUrl("../../content/" + relativeFontDirectory)
+    //    }
 }
