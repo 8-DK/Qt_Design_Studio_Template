@@ -41,6 +41,8 @@ QtObject {
         'wdgtActiveColor'   : "#008CBA",
         'wdgtBaseColor'     : "#f6f6f6",
         'wdgtDisableColor'  : "#858585",
+        'dialogueW'           :  width * 0.9,
+        'dialogueH'           :  height * 0.2
     }
     property variant deskstopDef:   {   'backgroundColor'   : "#ffffff",
         'width'             : Screen.desktopAvailableWidth,
@@ -53,7 +55,9 @@ QtObject {
         'thmDefBoxRadius'   : multFact * 5,
         'thmDefBoxBorderWidth' : multFact * 1,
         'buttonW'           :  width * 0.4,
-        'buttonH'           :  height * 0.07
+        'buttonH'           :  height * 0.07,
+        'dialogueW'           :  width * 0.9,
+        'dialogueH'           :  height * 0.2,
     }
 
     //    property StudioApplication application: StudioApplication {

@@ -16,5 +16,11 @@
         <file>content/DashBoard.qml</file>
         <file>content/MyWidgets/TextBoxCust.qml</file>
         <file>content/MyWidgets/ButtonCust.qml</file>
+        <file>content/assets/icons/downArrow.png</file>
+        <file>content/assets/icons/minus.png</file>
+        <file>content/assets/icons/plus.png</file>
+        <file>content/assets/icons/upArrow.png</file>
+        <file>content/assets/icons/delete.png</file>
+        <file>content/MyWidgets/GetValueDialogue.qml</file>
     </qresource>
 </RCC>

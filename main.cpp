@@ -1,4 +1,5 @@
 #include "main.h"
+#include "maincontext.h"
 
 
 
@@ -17,6 +18,7 @@ int main(int argc, char *argv[])
 
     engine.rootContext()->setContextProperty("appW",screenWidth);
     engine.rootContext()->setContextProperty("appH",screenHeight);
+    engine.rootContext()->setContextProperty("GImageDataModel", &MainContext::getInstance()->imageModel);
 
     engine.addImportPath("qrc:/content");
     engine.addImportPath("qrc:/imports");

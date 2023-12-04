@@ -58,10 +58,14 @@ android {
 INCLUDEPATH += $$PWD
 
 SOURCES += \
-    main.cpp
+    imagemodel.cpp \
+    main.cpp \
+    maincontext.cpp
 
 HEADERS += \
-    main.h
+    imagemodel.h \
+    main.h \
+    maincontext.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
