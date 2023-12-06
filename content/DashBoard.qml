@@ -14,15 +14,13 @@ Rectangle {
     GetValueDialogue{
         id : saveTofileDialogue
         onAccepted:{
-            GImageDataModel.receiveColorMap(canvas.colorMap)
             GImageDataModel.saveImage(text,canvas.col,canvas.row,canvas.colorMap)
             canvas.grabToImage(function(result) {
                 if (result.error) {
                     console.error("Error capturing image:", result.errorString);
                 } else {
                     var img = result.image;
-//                    img.saveToFile(text+"_tumb.jpeg");
-                    GImageDataModel.saveThumbImage(img,text+"_tumb.jpeg");
+                    GImageDataModel.saveThumbImage(img,text);
                 }
             });
         }
@@ -43,6 +41,7 @@ Rectangle {
                 id: matW
                 anchors.verticalCenter: parent.verticalCenter
                 placeholder: "8"
+                text : "8"
             }
 
             Text {
@@ -56,15 +55,17 @@ Rectangle {
                 id: matH
                 anchors.verticalCenter: parent.verticalCenter
                 placeholder: "8"
+                text : "8"
             }
 
             ButtonCust {
                 text: qsTr("Set")
                 anchors.verticalCenter: parent.verticalCenter
                 onClicked: {
-                    canvas.clear_canvas()
-                    canvas.col = matW.text
-                    canvas.row = matH.text
+//                    canvas.clear_canvas()
+                    console.log("Col : ",matW.text, "Row :",matH.text)
+                    canvas.col = parseInt(matW.text)
+                    canvas.row = parseInt(matH.text)
                     canvas.clear_canvas()
                 }
             }
@@ -155,6 +156,7 @@ Rectangle {
             anchors.top: colorTools.bottom
             //            anchors.bottom: parent.bottom
             property bool gridDrawn: false
+            property bool redrawCanvas: false
             property real lastX
             property real lastY
             property color drawColor: colorTools.paintColor
@@ -189,7 +191,8 @@ Rectangle {
                     var indices = calculateIndices(lastX, lastY);
                     console.log("Grid Indices - i:", indices.i, " j:", indices.j," Col:",canvas.drawColor);
                     var colr = ctx.fillStyle
-                    setColorAtIndex(indices.i, indices.j, colr);
+                    if((indices.i > -1) && (indices.j > -1) && (colr !== ""))
+                        setColorAtIndex(indices.i, indices.j, colr);
                     //                    // To retrieve color at a specific index
                     //                    var storedColor = colorMap[indices.i + "-" + indices.j];
                     //                    console.log("Color at index (", indices.i, ",", indices.j, "):", storedColor);
@@ -219,6 +222,22 @@ Rectangle {
                     }
                     ctx.stroke()
                     gridDrawn = true
+                }
+                if(redrawCanvas)
+                {
+                    for (var i = 0 ; i < col;i++)
+                    {
+                        for (var j = 0 ; j < row;j++)
+                        {
+                            var key = i + "-" + j
+                            if(!colorMap[key])
+                                colorMap[key] = "#ffffff"
+                            ctx.fillStyle = colorMap[key]
+                            ctx.fillRect(i*rw,j*rh,rw-(gridWidth*1),rh-(gridWidth*1));
+                            ctx.stroke()
+                        }
+                    }
+                    redrawCanvas = false
                 }
             }
 
@@ -262,5 +281,29 @@ Rectangle {
                 }
             }
         }
+    }
+
+    function startNewFile()
+    {
+        matW.text = "8"
+        matH.text = "8"
+        canvas.col = parseInt(matW.text)
+        canvas.row = parseInt(matH.text)
+        canvas.clear_canvas()
+    }
+
+    function startEditFile(index)
+    {
+        canvas.clear_canvas()
+        console.log("Edit image : ",GImageDataModel.getFileName(index))
+        saveTofileDialogue.text = GImageDataModel.getFileName(index)
+        matW.text = GImageDataModel.getWidth(index)
+        matH.text = GImageDataModel.getHeight(index)
+        canvas.col = parseInt(matW.text)
+        canvas.row = parseInt(matH.text)
+        canvas.colorMap = GImageDataModel.getCanvas(index)
+        canvas.redrawCanvas = true
+        canvas.requestPaint();
+
     }
 }

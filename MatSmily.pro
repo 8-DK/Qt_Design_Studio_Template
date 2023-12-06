@@ -60,12 +60,14 @@ INCLUDEPATH += $$PWD
 SOURCES += \
     imagemodel.cpp \
     main.cpp \
-    maincontext.cpp
+    maincontext.cpp \
+    utils.cpp
 
 HEADERS += \
     imagemodel.h \
     main.h \
-    maincontext.h
+    maincontext.h \
+    utils.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

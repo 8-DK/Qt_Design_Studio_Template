@@ -22,5 +22,10 @@
         <file>content/assets/icons/upArrow.png</file>
         <file>content/assets/icons/delete.png</file>
         <file>content/MyWidgets/GetValueDialogue.qml</file>
+        <file>content/assets/icons/deleteFile.svg</file>
+        <file>content/assets/icons/downArrow.svg</file>
+        <file>content/assets/icons/editFile.svg</file>
+        <file>content/assets/icons/newFile.svg</file>
+        <file>content/assets/icons/upArrow.svg</file>
     </qresource>
 </RCC>

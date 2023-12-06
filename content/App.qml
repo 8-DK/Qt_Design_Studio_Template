@@ -48,7 +48,16 @@ Window {
         anchors.left: parent.left
         initialItem: dashbord
         property DashBoard  dashbord: DashBoard{}
-        property Screen01   screen1: Screen01{}
+        property Screen01   screen1: Screen01{
+            onStartNewImage:{
+                stackView.pop()
+                stackView.dashbord.startNewFile()
+            }
+            onStartEditImage:index =>{
+                stackView.pop()
+                stackView.dashbord.startEditFile(index)
+            }
+        }
         property Screen02   screen2: Screen02{}
     }
 

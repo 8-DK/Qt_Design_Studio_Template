@@ -1,7 +1,6 @@
 #ifndef MAINCONTEXT_H
 #define MAINCONTEXT_H
 
-#include <QStandardPaths>
 #include <QDir>
 #include <QDebug>
 #include "imagemodel.h"
@@ -23,7 +22,6 @@ public:
 
     ImageModel imageModel;
 
-    QString getStoragePath();
 };
 
 #endif // MAINCONTEXT_H
