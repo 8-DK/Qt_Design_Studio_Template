@@ -167,8 +167,14 @@ Rectangle {
 
             property real rw : width/col
             property real rh : height/row
-            onHeightChanged: gridDrawn = false
-            onWidthChanged: gridDrawn = false
+            onHeightChanged: {
+                gridDrawn = false
+                redrawCanvas = true
+            }
+            onWidthChanged:{
+                gridDrawn = false
+                redrawCanvas = true
+            }
             property var colorMap: {"":""}
 
             onPaint: {
@@ -189,7 +195,6 @@ Rectangle {
                     ctx.fillRect(x1,y1,rw-(gridWidth*2),rh-(gridWidth*2));
                     ctx.stroke()
                     var indices = calculateIndices(lastX, lastY);
-                    console.log("Grid Indices - i:", indices.i, " j:", indices.j," Col:",canvas.drawColor);
                     var colr = ctx.fillStyle
                     if((indices.i > -1) && (indices.j > -1) && (colr !== ""))
                         setColorAtIndex(indices.i, indices.j, colr);

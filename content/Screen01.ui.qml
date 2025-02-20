@@ -27,9 +27,10 @@ Rectangle {
         Item {
             id: delegateItem
             width: listView.width;
-            height: listView.height * 0.1
+            height: listView.height/8
             clip: true
             Row {
+                id : contentRow
                 anchors.verticalCenter: parent.verticalCenter
                 width: parent.width
                 height:parent.height
@@ -40,6 +41,7 @@ Rectangle {
                     width: parent.width*0.1
                     height: parent.height
                     anchors.verticalCenter: parent.verticalCenter
+                    color: "transparent"
                     Image {
                         height: parent.height
                         source: "assets/icons/upArrow.svg"
@@ -55,6 +57,7 @@ Rectangle {
                     width: parent.width*0.1
                     height: parent.height
                     anchors.verticalCenter: parent.verticalCenter
+                    color: "transparent"
                     Image {
                         height: parent.height
                         fillMode: Image.PreserveAspectFit
@@ -69,10 +72,11 @@ Rectangle {
                     width: parent.width*0.4
                     height: parent.height
                     anchors.verticalCenter: parent.verticalCenter
+                    color: "transparent"
                     Text {
                         anchors.verticalCenter: parent.verticalCenter
                         text: name
-                        font.pixelSize: 15
+                        font.pixelSize: parent.height*0.3
                         color: "black"
                     }
                 }
@@ -110,6 +114,15 @@ Rectangle {
                         onClicked: GImageDataModel.removeImage(index)
                     }
                 }
+            }
+
+            Rectangle{
+                id : divider
+                width: contentRow.width
+                height: 1
+                color: "grey"
+                anchors.bottom: parent.bottom
+                radius: 0.5
             }
 
             // Animate adding and removing of items:

@@ -243,7 +243,6 @@ void ImageModel::loadImagesFromStorage()
             QString color = colorMapObject["color"].toString();
             QString index = colorMapObject["index"].toString();
             data.insert(index,color);
-            qDebug() << "Color:" << color << "Index:" << index;
         }
         ImageData* img = new ImageData(name,fileFullPath,width,height,data);
         addImageData(img);

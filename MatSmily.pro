@@ -58,12 +58,14 @@ android {
 INCLUDEPATH += $$PWD
 
 SOURCES += \
+    commserver.cpp \
     imagemodel.cpp \
     main.cpp \
     maincontext.cpp \
     utils.cpp
 
 HEADERS += \
+    commserver.h \
     imagemodel.h \
     main.h \
     maincontext.h \
